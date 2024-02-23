@@ -31,7 +31,7 @@ then
     $pms install curl wget
 fi
 
-if [ "$(curl -s -o /dev/null -w "%{http_code}" "https://portswigger.net/burp/releases/professional-community-2023-12-1-5")" -eq "200%" ]
+if [ $(curl -s -o /dev/null -w "%{http_code}" "https://portswigger.net/burp/releases/professional-community-2023-12-1-5"|sed "s/%//g") -eq "200" ]
 then
     echo -n "Installing burpsuite..."
     wget -O burpsuite_community_linux.sh "https://portswigger.net/burp/releases/startdownload?product=community&version=2023.12.1.5&type=Linux"
