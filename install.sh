@@ -37,6 +37,8 @@ then
     echo -n "Installing burpsuite..."
     wget -q -O burpsuite_community_linux.sh "https://portswigger.net/burp/releases/startdownload?product=community&version=2023.12.1.5&type=Linux"
     echo "OK"
+    chmod u+x burpsuite_community_linux.sh
+    ./burpsuite_community_linux.sh
 else
     echo "Please install new version of burpsuite"
     firefox "https://portswigger.net/burp/releases/community/latest"
