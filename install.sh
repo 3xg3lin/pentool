@@ -14,7 +14,7 @@ if [ -n $input ]
 then
     while read tool
     do
-	if $(dpkg --list $tool)
+	if $(dpkg --list $tool &> /dev/null)
 	then
 	    echo "$tool is already installed"
 	else
@@ -28,7 +28,7 @@ fi
 
 if ! $(command -v curl && command -v wget)
 then
-    $pms install curl wget
+    $pms install curl wget -y
 fi
 
 if [ $(curl -s -o /dev/null -w "%{http_code}" "https://portswigger.net/burp/releases/professional-community-2023-12-1-5"|sed "s/%//g") -eq "200" ]
