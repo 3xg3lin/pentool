@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 input='list'
-if command -v apt dpkg
+if $(command -v apt dpkg &> /dev/null)
 then
     pms='apt'
     $pms update
@@ -18,7 +18,8 @@ then
 	then
 	    echo "$tool is already installed"
 	else
-	    $pms install $tool
+	    bundle=($tool )
+	    $pms install $bundle
 	fi
     done < "$input"
 else
