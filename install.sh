@@ -19,7 +19,7 @@ then
 	    echo "$tool is already installed"
 	else
 	    bundle=($tool )
-	    $pms install $bundle
+	    $pms install $bundle -y
 	fi
     done < "$input"
 else
