@@ -26,6 +26,11 @@ else
     echo "Please enter some tool to list"
 fi
 
+if ! $(command -v curl && command -v wget)
+then
+    $pms install curl wget
+fi
+
 if [ $(curl -s -o /dev/null -w "%{http_code}" https://portswigger.net/burp/releases/professional-community-2023-12-1-5) -eq '200%' ]
 then
     echo -n "Installing burpsuite..."
