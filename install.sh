@@ -52,6 +52,7 @@ then
     echo "OK"
     chmod u+x burpsuite_community_linux.sh
     ./burpsuite_community_linux.sh
+    rm burpsuite_community_linux.sh
 else
     echo "Burp Suite is already installed"
     exit
