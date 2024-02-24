@@ -62,7 +62,7 @@ fi
 # Checking java on the system
 if ! $(command -v openjdk-21-jre openjdk-21-jdk &> /dev/null) 
 then
-    apt install openjdk-21-jre openjdk-21-jdk -y 
+    apt install openjdk-21-jre openjdk-21-jdk -y 2> /dev/null 
 fi
 
 # Installation for Burp Suite
