@@ -31,11 +31,11 @@ then
 	else
 	    if $(apt-cache show $tool &> /dev/null)
 	    then
-		bundle=($tool )
+		bundle=( $tool )
 	    fi
 	fi
     done < "$input"
-    $pms install ${bundle[@]} -y 2>/dev/null
+    $pms install ${bundle[@]} -y 
 else
     echo "Please enter some tool to list"
 fi
