@@ -32,7 +32,7 @@ then
 	    bundle=($tool )
 	fi
     done < "$input"
-    $pms install ${bundle[*]} -y
+    $pms install ${bundle[*]} -y 2>/dev/null
 else
     echo "Please enter some tool to list"
 fi
