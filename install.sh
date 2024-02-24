@@ -8,8 +8,7 @@ input='list'	# List for the commands we want to install
 # check the PMS
 if $(command -v apt dpkg &> /dev/null)
 then
-    pms='apt'
-    $pms update
+    apt update
 else
     echo "Only Debian-based distro"
     exit
@@ -40,7 +39,7 @@ then
 	    fi
 	fi
     done < "$input"
-    $pms install ${bundle[@]} -y 
+    apt install ${bundle[@]} -y 
 else
     echo "Please enter some tool to list"
 fi
@@ -60,6 +59,12 @@ then
     rm msfinstall
 fi
 
+# Checking java on the system
+if ! $(command -v openjdk-21-jre openjdk-21-jdk &> /dev/null) 
+then
+    apt install openjdk-21-jre openjdk-21-jdk -y 
+fi
+
 # Installation for Burp Suite
 if ! $(command -v burpsuite &> /dev/null)
 then
@@ -75,9 +80,9 @@ else
 fi
 
 # Installation maltego
-if ! $(command -v maltego)
+if ! $(command -v maltego &> /dev/null)
 then
-    echo "Installing maltego..."
+    echo -n "Installing maltego..."
     wget -q -O Maltego.deb https://downloads.maltego.com/maltego-v4/linux/Maltego.v4.6.0.deb 
     echo "OK"
     apt install ./Maltego.deb &> /dev/null
