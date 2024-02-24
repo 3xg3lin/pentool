@@ -32,17 +32,21 @@ then
     $pms install curl wget -y
 fi
 # Installation for Burp Suite
-if [ $(curl -s -o /dev/null -w "%{http_code}" "https://portswigger.net/burp/releases/professional-community-2023-12-1-5"|sed "s/%//g") -eq "200" ]
+if !$(command -v burpsuite &> /dev/null)
 then
-    echo -n "Installing burpsuite..."
-    wget -q -O burpsuite_community_linux.sh "https://portswigger.net/burp/releases/startdownload?product=community&version=2023.12.1.5&type=Linux"
-    echo "OK"
-    chmod u+x burpsuite_community_linux.sh
-    ./burpsuite_community_linux.sh
+    if [ $(curl -s -o /dev/null -w "%{http_code}" "https://portswigger.net/burp/releases/professional-community-2023-12-1-5"|sed "s/%//g") -eq "200" ]
+    then
+	echo -n "Installing burpsuite..."
+	wget -q -O burpsuite_community_linux.sh "https://portswigger.net/burp/releases/startdownload?product=community&version=2023.12.1.5&type=Linux"
+	echo "OK"
+	chmod u+x burpsuite_community_linux.sh
+	./burpsuite_community_linux.sh
+    else
+	echo "Please install new version of burpsuite"
+	firefox "https://portswigger.net/burp/releases/community/latest"
+	exit
+    fi
 else
-    echo "Please install new version of burpsuite"
-    firefox "https://portswigger.net/burp/releases/community/latest"
-    exit
+    echo "burpsuite is already installed"
 fi
-
 
