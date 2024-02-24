@@ -2,6 +2,7 @@
 #
 input='list' # List for the commands we want to install
 
+# check the PMS
 if $(command -v apt dpkg &> /dev/null)
 then
     pms='apt'
@@ -10,6 +11,15 @@ else
     echo "Only Debian-based distro"
     exit
 fi
+
+# Checking curl and wget command 
+if ! $(command -v curl wget &> /dev/null)
+then
+    echo curl >> $input
+    echo wget >> $input
+fi
+
+
 # Check all the commands we wnat to install and then install
 if [ -n $input ]
 then
@@ -26,11 +36,7 @@ then
 else
     echo "Please enter some tool to list"
 fi
-# Checking curl and wget command 
-if ! $(command -v curl wget &> /dev/null)
-then
-    $pms install curl wget -y
-fi
+
 # Installation for Burp Suite
 if ! $(command -v burpsuite &> /dev/null)
 then
