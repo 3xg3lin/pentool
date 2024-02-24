@@ -29,7 +29,7 @@ then
 	then
 	    echo "$tool is already installed"
 	else
-	    if $(apt-cache show $tool)
+	    if $(apt-cache show $tool &> /dev/null)
 	    then
 		bundle=($tool )
 	    else
