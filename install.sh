@@ -74,3 +74,14 @@ else
     exit
 fi
 
+# Installation maltego
+if ! $(command -v maltego)
+then
+    echo "Installing maltego..."
+    wget -q -O Maltego.deb https://downloads.maltego.com/maltego-v4/linux/Maltego.v4.6.0.deb 
+    echo "OK"
+    apt install ./Maltego.deb &> /dev/null
+    rm Maltego.deb
+else
+    echo "maltego already installed"
+fi
