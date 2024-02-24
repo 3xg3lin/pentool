@@ -32,7 +32,7 @@ then
     $pms install curl wget -y
 fi
 # Installation for Burp Suite
-if !$(command -v burpsuite &> /dev/null)
+if ! $(command -v burpsuite &> /dev/null)
 then
     if [ $(curl -s -o /dev/null -w "%{http_code}" "https://portswigger.net/burp/releases/professional-community-2023-12-1-5"|sed "s/%//g") -eq "200" ]
     then
