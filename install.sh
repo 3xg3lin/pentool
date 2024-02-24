@@ -32,8 +32,6 @@ then
 	    if $(apt-cache show $tool &> /dev/null)
 	    then
 		bundle=($tool )
-	    else
-		PackageNotFound=($tool )
 	    fi
 	fi
     done < "$input"
