@@ -31,7 +31,7 @@ then
 	else
 	    if $(apt-cache show $tool &> /dev/null)
 	    then
-		bundle=( $tool )
+		bundle+=( $tool )
 	    fi
 	fi
     done < "$input"
