@@ -1,6 +1,9 @@
 #!/bin/bash
-#
-input='list' # List for the commands we want to install
+# This is an automated tool for penetration and forensic tool installation.
+# Especially for easy installation on a debian-based distribution instead of
+# a full-fledged system like Kali linux.
+
+input='list'	# List for the commands we want to install
 
 # check the PMS
 if $(command -v apt dpkg &> /dev/null)
@@ -19,12 +22,12 @@ then
     echo wget >> $input
 fi
 
-
-# Check all the commands we wnat to install and then install
+# Check all the commands we want to install and then install
 if [ -n $input ]
 then
     while read tool
     do
+	echo "Checking Package..."
 	if $(dpkg --list $tool &> /dev/null)
 	then
 	    echo "$tool is already installed"
@@ -42,7 +45,19 @@ else
     echo "Please enter some tool to list"
 fi
 
-echo "${PackageNotFound[@]} not found on repository"
+# Show not founding package
+if [ -n $package ]
+then
+    echo "${PackageNotFound[*]} not found on repository"
+fi
+
+# metasploit freamwork installation
+if ! $(dpkg --list metsploit-framework)
+then
+    curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall
+    chmod u+x msfinstall
+    ./msfinstall
+fi
 
 # Installation for Burp Suite
 if ! $(command -v burpsuite &> /dev/null)
