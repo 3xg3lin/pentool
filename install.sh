@@ -32,6 +32,8 @@ then
 	    if $(apt-cache show $tool &> /dev/null)
 	    then
 		bundle+=( $tool )
+	    else
+		package+=( $tool )
 	    fi
 	fi
     done < "$input"
@@ -40,7 +42,7 @@ else
     echo "Please enter some tool to list"
 fi
 
-#echo "${PackageNotFound[@]} not found on repository"
+echo "${PackageNotFound[@]} not found on repository"
 
 # Installation for Burp Suite
 if ! $(command -v burpsuite &> /dev/null)
