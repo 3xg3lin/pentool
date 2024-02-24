@@ -20,9 +20,9 @@ then
 	    echo "$tool is already installed"
 	else
 	    bundle=($tool )
-	    $pms install $bundle -y
 	fi
     done < "$input"
+    $pms install $bundle -y
 else
     echo "Please enter some tool to list"
 fi
